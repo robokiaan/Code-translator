@@ -1,3 +1,49 @@
+jQuery(document).ready(function() {
+    jQuery('.sb').hide()
+})
+
+var key = {
+    'A':'25',
+    'B':'24',
+    'C':'23',
+    'D':'22',
+    'E':'21',
+    'F':'20',
+    'G':'19',
+    'H':'18',
+    'I':'17',
+    'J':'16',
+    'K':'15',
+    'L':'14',
+    'M':'13',
+    'N':'12',
+    'O':'11',
+    'P':'10',
+    'Q':'9',
+    'R':'8',
+    'S':'7',
+    'T':'6',
+    'U':'5',
+    'V':'4',
+    'W':'3',
+    'X':'2',
+    'Y':'1',
+    'Z':'0',
+
+    '0':'Z',
+    '1':'Y',
+    '2':'X',
+    '3':'W',
+    '4':'V',
+    '5':'U',
+    '6':'T',
+    '7':'S',
+    '8':'R',
+    '9':'Q',
+
+    ' ':'26',
+}
+
 function encrypt_message() {
     message = jQuery('#input_message').val()
     message = message.toUpperCase()
@@ -185,10 +231,16 @@ function encrypt_message() {
 
 function decrypt_message() {
     code = jQuery('#input_message').val()
-    if (code == 'kmax3931') {
-        jQuery('#output_message').val('this is illegal code you will be caught')
+    if (code == 'Dhananya') {
+        jQuery('.sb').show()
+        jQuery('.btn').css('margin-top', '40px')
+        jQuery('.btn').removeClass('col-sm-6')
+        jQuery('.btn').removeClass('col-xs-6')
+        jQuery('.btn').addClass('col-sm-4')
+        jQuery('.btn').addClass('col-xs-4')
+        clean()
     } else {
-    codeChars = String(code).split('.')
+        codeChars = String(code).split('.')
     for (i = 0; i < codeChars.length - 1; i++) {
         char = codeChars[i]
         if (char == '0') {
@@ -312,15 +364,34 @@ function clean() {
     jQuery('#input_message').val('')
 }
 
-function dbclicked() {
-    jQuery('#select-key').show()
-}
-
 function copy() {
     document.getElementById('output_message').disabled = false
     jQuery('#output_message').select()
     document.execCommand('copy')
     document.getElementById('output_message').disabled = true
+}
+
+function change() {
+    message = jQuery('#input_message').val()
+    message = message.toUpperCase()
+    message = message.split('')
+    for (i = 0; i < message.length; i++) {
+        char = message[i]
+        var char = key[char]
+        if (char == undefined) {
+            char = message[i]
+        } else {
+            if (Number(char) != NaN) {
+                char = (char * 10) - 2
+            }
+        }
+        message[i] = char
+    }
+    message = String(message)
+    while (message.includes(',')) {
+        message = String(message).replace(',', '.')
+    }
+    jQuery('#output_message').val(message)
 }
 
 String.prototype.replaceAt = function(index, replacement) {
