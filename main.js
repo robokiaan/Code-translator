@@ -186,7 +186,7 @@ function encrypt_message() {
 function decrypt_message() {
     code = jQuery('#input_message').val()
     if (code == 'kmax3931') {
-        jQuery('#output_message').val('a***ya')
+        jQuery('#output_message').val('this is illegal code you will be caught')
     } else {
     codeChars = String(code).split('.')
     for (i = 0; i < codeChars.length - 1; i++) {
