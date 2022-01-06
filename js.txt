@@ -1,0 +1,118 @@
+var message = ''
+var chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+var key = 1
+var keys = [1, 2]
+
+jQuery(document).ready(function() {
+    for (i = 0; i < keys.length; i++) {
+        jQuery('#select-key').append(`<option>Key ${i + 1}</option>`)
+    }
+    jQuery('#select-key').hide()
+})
+
+function encrypt_message() {
+    key = document.getElementById("select-key")
+    key = String(key.options[key.selectedIndex].text).substr(4, 1)
+    console.log(key)
+    message = jQuery('#input_message').val()
+    console.log(message)
+    if (key == 1) {
+        encrypted_message = []
+        if (String(message.length / 2).includes('.')) {
+            message = String(message) + ' '
+        }
+        for (i = 0; i < message.length; i = i + 2) {
+            var random_number = Math.floor(Math.random() * 34)
+            console.log(random_number)
+            var swap_chars = String(message).substr(i, 2)
+            swap_chars = swap_chars[1] + chars[random_number] + swap_chars[0]
+            encrypted_message.push(swap_chars)
+        }
+        encrypted_message = encrypted_message.toString()
+        while (encrypted_message.includes(',')) {
+            encrypted_message = encrypted_message.replace(',', '')
+        }
+        console.log(encrypted_message)
+        jQuery('#output_message').val(encrypted_message)
+    } else if (key == 2) {
+        encrypted_message = []
+        if (String(message.length / 2).includes('.')) {
+            message = String(message) + ' '
+        }
+        for (i = 0; i < message.length; i = i + 2) {
+            var random_number = Math.floor(Math.random() * 34)
+            console.log(random_number)
+            var swap_chars = String(message).substr(i, 2)
+            swap_chars = swap_chars[1] + swap_chars[0]
+            encrypted_message.push(swap_chars)
+        }
+        encrypted_message = encrypted_message.toString()
+        while (encrypted_message.includes(',')) {
+            encrypted_message = encrypted_message.replace(',', '')
+        }
+        console.log(encrypted_message)
+        jQuery('#output_message').val(encrypted_message)
+    }
+}
+
+function decrypt_message() {
+    if (key == 1) {
+        key = document.getElementById("select-key")
+        key = String(key.options[key.selectedIndex].text).substr(4, 1)
+        console.log(key)
+        message = jQuery('#input_message').val()
+        console.log(message)
+        decrypted_message = []
+        if (String(message.length / 2).includes('.')) {
+            message = String(message) + ' '
+        }
+        for (i = 0; i < message.length; i = i + 3) {
+            var swap_chars = String(message).substr(i, 3)
+            swap_chars = swap_chars[2] + swap_chars[0]
+            decrypted_message.push(swap_chars)
+        }
+        decrypted_message = decrypted_message.toString()
+        while (decrypted_message.includes(',')) {
+            decrypted_message = decrypted_message.replace(',', '')
+        }
+        decrypted_message = decrypted_message.replace('undefined', '')
+        console.log(decrypted_message)
+        jQuery('#output_message').val(decrypted_message)
+    } else if (key == 2) {
+        message = jQuery('#input_message').val()
+        console.log(message)
+        decrypted_message = []
+        if (String(message.length / 2).includes('.')) {
+            message = String(message) + ' '
+        }
+        for (i = 0; i < message.length; i = i + 2) {
+            var swap_chars = String(message).substr(i, 2)
+            swap_chars = swap_chars[1] + swap_chars[0]
+            decrypted_message.push(swap_chars)
+        }
+        decrypted_message = decrypted_message.toString()
+        while (decrypted_message.includes(',')) {
+            decrypted_message = decrypted_message.replace(',', '')
+        }
+        decrypted_message = decrypted_message.replace('undefined', '')
+        console.log(decrypted_message)
+        jQuery('#output_message').val(decrypted_message)
+    }
+
+}
+
+function clean() {
+    jQuery('#output_message').val('')
+    jQuery('#input_message').val('')
+}
+
+function dbclicked() {
+    jQuery('#select-key').show()
+}
+
+function copy() {
+    document.getElementById('output_message').disabled = false
+    jQuery('#output_message').select()
+    document.execCommand('copy')
+    document.getElementById('output_message').disabled = true
+}
