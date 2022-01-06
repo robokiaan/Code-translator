@@ -104,6 +104,70 @@ function encrypt_message() {
             message = message.replaceAt(i, '26.')
             length = length + 1
             i = i + 1
+        } else if (char == '(') {
+            message = message.replaceAt(i, '27.')
+            length = length + 1
+            i = i + 1
+        } else if (char == ')') {
+            message = message.replaceAt(i, '28.')
+            length = length + 1
+            i = i + 1
+        } else if (char == ':') {
+            message = message.replaceAt(i, '29.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '-') {
+            message = message.replaceAt(i, '30.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '+') {
+            message = message.replaceAt(i, '31.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '=') {
+            message = message.replaceAt(i, '32.')
+            length = length + 1
+            i = i + 1
+        } else if (char == ',') {
+            message = message.replaceAt(i, '33.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '?') {
+            message = message.replaceAt(i, '34.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '/') {
+            message = message.replaceAt(i, '35.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '!') {
+            message = message.replaceAt(i, '36.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '*') {
+            message = message.replaceAt(i, '37.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '%') {
+            message = message.replaceAt(i, '38.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '$') {
+            message = message.replaceAt(i, '39.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '&') {
+            message = message.replaceAt(i, '40.')
+            length = length + 1
+            i = i + 1
+        } else if (char == '"') {
+            message = message.replaceAt(i, '41.')
+            length = length + 1
+            i = i + 1
+        } else if (char == "'") {
+            message = message.replaceAt(i, '42.')
+            length = length + 1
+            i = i + 1
         } else if (char == '0') {
             message = message.replaceAt(i, 'A.')
         } else if (char == '1') {
@@ -210,6 +274,38 @@ function decrypt_message() {
             codeChars[i] = '9'
         } else if (char == 'A') {
             codeChars[i] = '0'
+        } else if (char == '27') {
+            codeChars[i] = '('
+        } else if (char == '28') {
+            codeChars[i] = ')'
+        } else if (char == '29') {
+            codeChars[i] = ':'
+        } else if (char == '30') {
+            codeChars[i] = '-'
+        } else if (char == '31') {
+            codeChars[i] = '+'
+        } else if (char == '32') {
+            codeChars[i] = '='
+        } else if (char == '33') {
+            codeChars[i] = ','
+        } else if (char == '34') {
+            codeChars[i] = '?'
+        } else if (char == '35') {
+            codeChars[i] = '/'
+        } else if (char == '36') {
+            codeChars[i] = '!'
+        } else if (char == '37') {
+            codeChars[i] = '*'
+        } else if (char == '38') {
+            codeChars[i] = '%'
+        } else if (char == '39') {
+            codeChars[i] = '$'
+        } else if (char == '40') {
+            codeChars[i] = '&'
+        } else if (char == '41') {
+            codeChars[i] = '"'
+        } else if (char == '42') {
+            codeChars[i] = "'"
         }
     }
     code = String(codeChars)
