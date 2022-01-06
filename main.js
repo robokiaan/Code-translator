@@ -419,11 +419,15 @@ function encrypt() {
     message = message.split('')
     for (i = 0; i < message.length; i++) {
         char = message[i]
-        var char = key[char]
+        char = key[String(char)]
         if (char == undefined) {
             char = message[i]
         } else {
-            if (Number(char) != NaN) {
+            console.log(Number(char))
+            if (isNaN(char)) {
+                char = char
+                console.log('not a number')
+            } else {
                 char = (char * 10) - 2
             }
         }
@@ -441,9 +445,12 @@ function decrypt() {
     message = message.split('.')
     for (i = 0; i < message.length; i++) {
         char = message[i]
-        char = (Number(char) + 2) / 10
-        console.log(char) 
-        char = decryptkey[char]
+        if(isNaN(char)) { 
+            char = decryptkey[char]
+        } else {
+            char = (Number(char) + 2) / 10
+            char = decryptkey[char]
+        }
         if (char == undefined) {
             char = message[i]
         }
