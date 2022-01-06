@@ -1,15 +1,3 @@
-var message = ''
-var chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-var key = 1
-var keys = [1, 2]
-
-jQuery(document).ready(function() {
-    for (i = 0; i < keys.length; i++) {
-        jQuery('#select-key').append(`<option>Key ${i + 1}</option>`)
-    }
-    jQuery('#select-key').hide()
-})
-
 function encrypt_message() {
     message = jQuery('#input_message').val()
     message = message.toUpperCase()
