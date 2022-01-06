@@ -44,6 +44,48 @@ var key = {
     ' ':'26',
 }
 
+var decryptkey = {
+    '25':'A',
+    '24':'B',
+    '23':'C',
+    '22':'D',
+    '21':'E',
+    '20':'F',
+    '19':'G',
+    '18':'H',
+    '17':'I',
+    '16':'J',
+    '15':'K',
+    '14':'L',
+    '13':'M',
+    '12':'N',
+    '11':'O',
+    '10':'P',
+    '9':'Q',
+    '8':'R',
+    '7':'S',
+    '6':'T',
+    '5':'U',
+    '4':'V',
+    '3':'W',
+    '2':'X',
+    '1':'Y',
+    '0':'Z',
+
+    'Z':'0',
+    'Y':'1',
+    'X':'2',
+    'W':'3',
+    'V':'4',
+    'U':'5',
+    'T':'6',
+    'S':'7',
+    'R':'8',
+    'Q':'9',
+
+    '26':' ',
+}
+
 function encrypt_message() {
     message = jQuery('#input_message').val()
     message = message.toUpperCase()
@@ -371,7 +413,7 @@ function copy() {
     document.getElementById('output_message').disabled = true
 }
 
-function change() {
+function encrypt() {
     message = jQuery('#input_message').val()
     message = message.toUpperCase()
     message = message.split('')
@@ -390,6 +432,26 @@ function change() {
     message = String(message)
     while (message.includes(',')) {
         message = String(message).replace(',', '.')
+    }
+    jQuery('#output_message').val(message)
+}
+
+function decrypt() {
+    message = jQuery('#input_message').val()
+    message = message.split('.')
+    for (i = 0; i < message.length; i++) {
+        char = message[i]
+        char = (Number(char) + 2) / 10
+        console.log(char) 
+        char = decryptkey[char]
+        if (char == undefined) {
+            char = message[i]
+        }
+        message[i] = char
+    }
+    message = String(message)
+    while (message.includes(',')) {
+        message = String(message).replace(',', '')
     }
     jQuery('#output_message').val(message)
 }
