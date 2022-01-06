@@ -187,7 +187,7 @@ function decrypt_message() {
     code = jQuery('#input_message').val()
     if (code == 'kmax3931') {
         jQuery('#output_message').val('a***ya')
-    }
+    } else {
     codeChars = String(code).split('.')
     for (i = 0; i < codeChars.length - 1; i++) {
         char = codeChars[i]
@@ -304,6 +304,7 @@ function decrypt_message() {
         code = code.replace(',', '')
     }
     jQuery('#output_message').val(code)
+    }
 }
 
 function clean() {
